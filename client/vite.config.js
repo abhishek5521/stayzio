@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173,
+    strictPort: true,
     host: true
   },
   build: {
@@ -13,7 +14,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'mapbox-vendor': ['mapbox-gl'],
+          'leaflet-vendor': ['leaflet', 'react-leaflet'],
           'icons': ['lucide-react']
         }
       }

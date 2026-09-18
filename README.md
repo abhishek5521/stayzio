@@ -8,7 +8,7 @@ Stayzio is an enterprise-grade, full-featured hotel discovery, reservation, and 
 
 - **Consumer Discovery Engine**:
   - Hero search with destination autocomplete, date range selection, and guest counters.
-  - Interactive WebGL Map powered by **Mapbox GL JS** with custom price tag markers (`$380/nt`), active state highlights, and bidirectional card-to-marker synchronization.
+  - Interactive Map powered by **MapTiler** and **Leaflet** with custom INR price tag markers (`₹18,500/nt`), active state highlights, and bidirectional card-to-marker synchronization.
   - Granular multi-factor filtering: Price ranges, star ratings (4.0+, 4.5+), hotel categories (Hotel, Resort, Boutique, Apartment, Villa), and amenities.
   - Sorting: Recommended & Featured, Price Low to High, Price High to Low, Highest Rated, and Popularity.
   - Responsive layout: 3-pane split view on desktop (`Filters | Results | Sticky Map`) and dedicated floating mobile map drawer.
@@ -38,11 +38,11 @@ Stayzio is an enterprise-grade, full-featured hotel discovery, reservation, and 
 
 ### Frontend
 - **Framework**: React 18
-- **Build Tool**: Vite 6 (optimally split chunks: `react-vendor`, `mapbox-vendor`, `icons`)
+- **Build Tool**: Vite 6 (optimally split chunks: `react-vendor`, `leaflet-vendor`, `icons`)
 - **Routing**: React Router v6
 - **HTTP Client**: Axios (with authorization interceptors and automated 401 handling)
 - **Icons**: Lucide React
-- **Mapping**: Mapbox GL JS (`mapbox-gl`)
+- **Mapping**: MapTiler Streets v2 + Leaflet (`leaflet`, `react-leaflet`)
 - **Styling**: Pure Modern CSS / CSS Modules (Design Tokens, Glassmorphism, CSS Grid)
 
 ### Backend
@@ -150,18 +150,17 @@ The services will be accessible at:
 
 ---
 
-## 🗺️ Mapbox Setup (Optional)
+## 🗺️ MapTiler Setup
+The application uses MapTiler Streets v2 raster tiles powered by Leaflet.
 
-The application includes a resilient fallback map that gracefully displays hotels and location pins even if no Mapbox token is provided.
-
-To enable the full WebGL Mapbox GL JS map:
-1. Sign up for a free account at [Mapbox](https://account.mapbox.com/).
-2. Create an access token starting with `pk.ey...`.
-3. Open `client/.env` and insert your token:
+To configure your MapTiler API Key:
+1. Sign up for a free account at [MapTiler Cloud](https://cloud.maptiler.com/).
+2. Copy your API key from your MapTiler dashboard.
+3. Open `client/.env` and insert your key:
    ```env
-   VITE_MAPBOX_TOKEN=pk.eyJ1...your_token_here
+   VITE_MAPTILER_API_KEY=your_maptiler_api_key_here
    ```
-4. Save and reload the client.
+4. Save and start or reload the client.
 
 ---
 

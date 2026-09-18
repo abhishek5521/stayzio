@@ -5,9 +5,9 @@
  * 2. All Public, User, and Admin Pages & Endpoints
  * 3. User End-to-End Flow (Search -> Select Room -> Book -> Confirm -> View -> Cancel -> Favorite -> Review)
  * 4. Admin Operations (Live Stats -> Hotel CRUD -> Room CRUD -> User Roles -> Moderation -> Reports)
- * 5. Edge Cases (Invalid login, Bad dates, Double bookings, Capacity limits, 403 Forbidden)
- * 6. Mapbox Coordinates Integrity & Fallback
- * 7. Clean up temporary test records
+ * 5. Security Edge Cases & RBAC Violations
+ * 6. Geographic Coordinates Integrity & MapTiler
+ * 7. Razorpay Payment Gateway & Cryptographic Verification records
  */
 
 require('dotenv').config({ path: require('path').join(__dirname, '.env') });
@@ -358,9 +358,9 @@ const runAudit = async () => {
     assert(unauthBooking.status === 401, 'Missing token blocked from protected route (401 Unauthorized)');
 
     // -------------------------------------------------------------
-    // 6. MAPBOX GEOGRAPHIC DATA INTEGRITY
+    // 6. GEOGRAPHIC DATA INTEGRITY & MAPTILER
     // -------------------------------------------------------------
-    console.log('\n--- AUDIT SECTION 6: Geographic Coordinates & Mapbox ---');
+    console.log('\n--- AUDIT SECTION 6: Geographic Coordinates & MapTiler ---');
     const allHotels = await req('/hotels?limit=50');
     const hotelsList = allHotels.data?.data?.hotels || [];
     const validCoords = hotelsList.every(

@@ -346,7 +346,7 @@ const HotelDetail = () => {
               <MapView
                 hotels={[hotel]}
                 selectedHotelId={hotel._id}
-                center={[hotel.longitude, hotel.latitude]}
+                center={[hotel.latitude, hotel.longitude]}
                 zoom={14}
               />
             </div>
